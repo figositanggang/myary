@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "307704981704",
+    "project_id": "myary-a7438",
+    "storage_bucket": "myary-a7438.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:307704981704:android:c4903cb07112d786cfddfd",
+        "android_client_info": {
+          "package_name": "com.example.myary"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCW0NaXrtcgPB75-o7BJMP1iDEa-ILlDQA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
