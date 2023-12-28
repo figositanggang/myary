@@ -3,12 +3,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+// Stateless Widgets
 // @ TextFormField
 class MyTextField extends StatelessWidget {
   final TextEditingController controller;
   final String hintText;
   bool obscureText;
-  Function(String)? onChanged;
+  Function(String value)? onChanged;
   AutovalidateMode autovalidateMode;
   TextInputType keyboardType;
   TextInputAction textInputAction;
@@ -90,13 +91,15 @@ class MyButton extends StatelessWidget {
   final Widget child;
   bool isPrimary;
   Color? backgroundColor;
+  EdgeInsetsGeometry? padding;
 
   MyButton({
     super.key,
     required this.onPressed,
     required this.child,
-    this.isPrimary = true,
     this.backgroundColor,
+    this.isPrimary = true,
+    this.padding = const EdgeInsets.symmetric(horizontal: 25, vertical: 20),
   });
 
   @override
@@ -105,7 +108,7 @@ class MyButton extends StatelessWidget {
       onPressed: onPressed,
       child: child,
       style: ElevatedButton.styleFrom(
-        padding: EdgeInsets.symmetric(horizontal: 25, vertical: 20),
+        padding: padding,
         backgroundColor: isPrimary
             ? backgroundColor ?? Theme.of(context).colorScheme.primary
             : Theme.of(context).buttonTheme.colorScheme!.background,
@@ -121,6 +124,17 @@ class MyButton extends StatelessWidget {
   }
 }
 
+// @ Myary Card
+class MyaryCard extends StatelessWidget {
+  const MyaryCard({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container();
+  }
+}
+
+// Non Stateless Widgets
 // @ Full Screen Loading
 Material FullScreenLoading() {
   return Material(

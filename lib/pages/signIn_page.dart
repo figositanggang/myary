@@ -4,14 +4,14 @@ import 'package:myary/helpers/supabase_helper.dart';
 import 'package:myary/pages/signUp_page.dart';
 import 'package:myary/utils/custom_widgets.dart';
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({super.key});
+class SignInPage extends StatefulWidget {
+  const SignInPage({super.key});
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<SignInPage> createState() => _SignInPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _SignInPageState extends State<SignInPage> {
   late TextEditingController email;
   late TextEditingController password;
   late GlobalKey<FormState> formKey;

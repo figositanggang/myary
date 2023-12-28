@@ -17,7 +17,7 @@ class AuthStatePage extends StatelessWidget {
           }
         }
 
-        return LoginPage();
+        return SignInPage();
       },
     );
   }

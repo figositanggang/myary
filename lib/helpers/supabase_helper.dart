@@ -3,6 +3,7 @@ import 'package:myary/helpers/firebase_helper.dart';
 import 'package:myary/main.dart';
 import 'package:myary/models/user_model.dart';
 import 'package:myary/pages/auth_state_page.dart';
+import 'package:myary/pages/signIn_page.dart';
 import 'package:myary/utils/custom_methods.dart';
 import 'package:myary/utils/custom_widgets.dart';
 import 'package:dio/dio.dart';
@@ -54,7 +55,7 @@ class SupabaseHelper {
         },
       );
 
-      Response response = await _dio.put(
+      await _dio.put(
         "${FirebaseHelper.databaseUrl}/users/${authResponse.user!.id}.json",
         data: UserModel(
           userId: authResponse.user!.id,
@@ -65,10 +66,7 @@ class SupabaseHelper {
         ).toJson(),
       );
 
-      print("RESPONSE: ${response}");
-
-      // Navigator.pushReplacement(context, MyRoute(LoginPage()));
-      Navigator.pop(context);
+      Navigator.pushReplacement(context, MyRoute(SignInPage()));
     } catch (e) {
       Navigator.pop(context);
 

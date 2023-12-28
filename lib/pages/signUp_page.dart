@@ -134,7 +134,7 @@ class _SignUpPageState extends State<SignUpPage> {
                       isPrimary: false,
                       onPressed: () {
                         Navigator.pushReplacement(
-                            context, MyRoute(LoginPage()));
+                            context, MyRoute(SignInPage()));
                       },
                       child: Text("Batal"),
                     ),
