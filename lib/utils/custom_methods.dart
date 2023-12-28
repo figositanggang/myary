@@ -7,3 +7,12 @@ void showLoading(BuildContext context) {
     builder: (context) => FullScreenLoading(),
   );
 }
+
+void showSnackBar(
+  BuildContext context,
+  String content, {
+  bool isDanger = false,
+}) {
+  ScaffoldMessenger.of(context)
+      .showSnackBar(MySnackBar(content, isDanger: isDanger));
+}

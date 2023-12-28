@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:myary/helpers/supabase_helper.dart';
+import 'package:myary/pages/signIn_page.dart';
 import 'package:myary/utils/custom_widgets.dart';
 
 class SignUpPage extends StatefulWidget {
@@ -115,8 +116,8 @@ class _SignUpPageState extends State<SignUpPage> {
                           SupabaseHelper.signUp(
                             context,
                             email: email.text.trim(),
-                            // username: username.text.trim(),
-                            // full_name: fullName.text.trim(),
+                            username: username.text.trim(),
+                            fullName: fullName.text.trim(),
                             password: password.text.trim(),
                           );
                         }
@@ -132,7 +133,8 @@ class _SignUpPageState extends State<SignUpPage> {
                     child: MyButton(
                       isPrimary: false,
                       onPressed: () {
-                        Navigator.pop(context);
+                        Navigator.pushReplacement(
+                            context, MyRoute(LoginPage()));
                       },
                       child: Text("Batal"),
                     ),

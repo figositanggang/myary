@@ -64,7 +64,7 @@ class MyTextField extends StatelessWidget {
         hintText: hintText,
         border: border ??
             OutlineInputBorder(
-              borderSide: BorderSide(color: Colors.white.withOpacity(.25)),
+              borderSide: BorderSide(color: Colors.black.withOpacity(.25)),
               borderRadius: BorderRadius.circular(30),
             ),
         focusedBorder: border ??
@@ -75,7 +75,7 @@ class MyTextField extends StatelessWidget {
             ),
         enabledBorder: border ??
             OutlineInputBorder(
-              borderSide: BorderSide(color: Colors.white.withOpacity(.25)),
+              borderSide: BorderSide(color: Colors.black.withOpacity(.25)),
               borderRadius: BorderRadius.circular(30),
             ),
         suffixIcon: suffixIcon,
@@ -109,11 +109,11 @@ class MyButton extends StatelessWidget {
         backgroundColor: isPrimary
             ? backgroundColor ?? Theme.of(context).colorScheme.primary
             : Theme.of(context).buttonTheme.colorScheme!.background,
-        foregroundColor: Colors.white,
+        foregroundColor: isPrimary ? Colors.white : Colors.black,
         shape: !isPrimary
             ? RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(30),
-                side: BorderSide(color: Colors.white.withOpacity(.75)),
+                side: BorderSide(color: Colors.black.withOpacity(.25)),
               )
             : null,
       ),
@@ -160,10 +160,11 @@ Text MyText(
 }
 
 // @ MySnackBar
-SnackBar MySnackBar(String content) {
+SnackBar MySnackBar(String content, {bool isDanger = false}) {
   return SnackBar(
     content: Text(content),
     behavior: SnackBarBehavior.floating,
+    backgroundColor: isDanger ? Colors.red : Colors.black,
     margin: EdgeInsets.symmetric(horizontal: 30, vertical: 10),
   );
 }

@@ -57,6 +57,7 @@ class DefaultFirebaseOptions {
     appId: '1:307704981704:android:c4903cb07112d786cfddfd',
     messagingSenderId: '307704981704',
     projectId: 'myary-a7438',
+    databaseURL: 'https://myary-a7438-default-rtdb.asia-southeast1.firebasedatabase.app',
     storageBucket: 'myary-a7438.appspot.com',
   );
 }

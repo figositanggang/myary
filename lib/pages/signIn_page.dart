@@ -86,7 +86,7 @@ class _LoginPageState extends State<LoginPage> {
                     child: MyButton(
                       onPressed: () {
                         if (formKey.currentState!.validate()) {
-                          SupabaseHelper.signUp(
+                          SupabaseHelper.signIn(
                             context,
                             email: email.text.trim(),
                             password: password.text.trim(),
@@ -104,7 +104,8 @@ class _LoginPageState extends State<LoginPage> {
                     child: MyButton(
                       isPrimary: false,
                       onPressed: () {
-                        Navigator.push(context, MyRoute(SignUpPage()));
+                        Navigator.pushReplacement(
+                            context, MyRoute(SignUpPage()));
                       },
                       child: Text("Daftar"),
                     ),
