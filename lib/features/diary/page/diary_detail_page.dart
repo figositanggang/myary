@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:myary/features/diary/get_controllers/diary_detail_controller.dart';
 import 'package:myary/features/diary/models/diary_model.dart';
 import 'package:myary/features/diary/page/edit_diary_page.dart';
+import 'package:myary/features/user/get_controllers/user_controller.dart';
 import 'package:myary/helpers/firebase_helper.dart';
 import 'package:myary/utils/custom_methods.dart';
 import 'package:myary/utils/custom_widgets.dart';
@@ -22,6 +23,7 @@ class DiaryDetailPage extends StatelessWidget {
 
   final DiaryDetailController detailController =
       Get.put(DiaryDetailController());
+  final UserController userController = Get.put(UserController());
 
   @override
   Widget build(BuildContext context) {
@@ -59,7 +61,8 @@ class DiaryDetailPage extends StatelessWidget {
                     // @ On Yes
                     MyButton(
                       onPressed: () {
-                        FirebaseHelper.deleteDiary(context, diaryId);
+                        FirebaseHelper.deleteDiary(context, diaryId,
+                            userController.currentUser.userId);
                       },
                       child: Text("Ya"),
                     ),

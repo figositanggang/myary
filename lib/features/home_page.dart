@@ -94,7 +94,7 @@ class _HomePageState extends State<HomePage> {
                 );
               }
 
-              if (!snapshot.hasData) {
+              if (!snapshot.hasData || snapshot.data!.data == null) {
                 return Center(
                   child: Text("Belum ada diary"),
                 );

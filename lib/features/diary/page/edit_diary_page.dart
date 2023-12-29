@@ -51,6 +51,7 @@ class _EditDiaryPageState extends State<EditDiaryPage> {
               if (formKey.currentState!.validate()) {
                 FirebaseHelper.editDiary(
                   context,
+                  userId: userController.currentUser.userId,
                   diaryId: widget.diaryId,
                   title: title.text.trim(),
                   isiDiary: isiDiary.text.trim(),

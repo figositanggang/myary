@@ -17,7 +17,7 @@ class FirebaseHelper {
 
   // ! Get All My Diary
   static Future<Response> getAllDiaries(String userId) async {
-    return _dio.get("$databaseUrl/diaries.json");
+    return _dio.get("$databaseUrl/diaries/$userId.json");
   }
 
   // ! Post a Diary
@@ -31,7 +31,7 @@ class FirebaseHelper {
 
     try {
       Response response = await _dio.post(
-        "$databaseUrl/diaries.json",
+        "$databaseUrl/diaries/$userId.json",
         data: DiaryModel(
           id: "",
           createdBy: userId,
@@ -44,7 +44,7 @@ class FirebaseHelper {
       var data = response.requestOptions.data;
 
       await _dio.put(
-        "$databaseUrl/diaries/${response.data["name"]}.json",
+        "$databaseUrl/diaries/$userId/${response.data["name"]}.json",
         data: DiaryModel(
           id: response.data["name"],
           createdBy: userId,
@@ -65,15 +65,18 @@ class FirebaseHelper {
   }
 
   // ! Edit a Diary
-  static Future editDiary(BuildContext context,
-      {required String diaryId,
-      required String title,
-      required String isiDiary}) async {
+  static Future editDiary(
+    BuildContext context, {
+    required String userId,
+    required String diaryId,
+    required String title,
+    required String isiDiary,
+  }) async {
     showLoading(context);
 
     try {
       await _dio.patch(
-        "$databaseUrl/diaries/$diaryId.json",
+        "$databaseUrl/diaries/$userId/$diaryId.json",
         data: {
           "title": title,
           "isiDiary": isiDiary,
@@ -91,11 +94,12 @@ class FirebaseHelper {
   }
 
   // ? Delete a Diary
-  static Future deleteDiary(BuildContext context, String diaryId) async {
+  static Future deleteDiary(
+      BuildContext context, String diaryId, String userId) async {
     showLoading(context);
 
     try {
-      await _dio.delete("$databaseUrl/diaries/$diaryId.json");
+      await _dio.delete("$databaseUrl/diaries/$userId/$diaryId.json");
 
       Navigator.pushAndRemoveUntil(
           context, MyRoute(HomePage()), (route) => false);
