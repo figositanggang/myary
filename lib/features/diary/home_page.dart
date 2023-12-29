@@ -6,7 +6,7 @@ import 'package:myary/helpers/firebase_helper.dart';
 import 'package:myary/main.dart';
 import 'package:myary/features/diary/models/diary_model.dart';
 import 'package:myary/features/user/models/user_model.dart';
-import 'package:myary/features/diary/new_diary_page.dart';
+import 'package:myary/features/diary/page/new_diary_page.dart';
 import 'package:myary/utils/custom_widgets.dart';
 
 class HomePage extends StatefulWidget {

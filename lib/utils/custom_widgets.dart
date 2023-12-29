@@ -4,7 +4,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:myary/features/diary/diary_detail_page.dart';
+import 'package:myary/features/diary/page/diary_detail_page.dart';
 import 'package:myary/features/diary/models/diary_model.dart';
 import 'package:myary/utils/custom_methods.dart';
 import 'package:intl/intl.dart';
@@ -25,27 +25,29 @@ class MyTextField extends StatelessWidget {
   InputBorder? border;
   Widget? suffixIcon;
   int? maxLines;
+  String? initialValue;
 
-  MyTextField({
-    super.key,
-    required this.controller,
-    required this.hintText,
-    this.obscureText = false,
-    this.onChanged,
-    this.autovalidateMode = AutovalidateMode.onUserInteraction,
-    this.textInputAction = TextInputAction.next,
-    this.keyboardType = TextInputType.text,
-    this.autofillHints,
-    this.inputFormatters,
-    this.validator,
-    this.border,
-    this.suffixIcon,
-    this.maxLines,
-  });
+  MyTextField(
+      {super.key,
+      required this.controller,
+      required this.hintText,
+      this.obscureText = false,
+      this.onChanged,
+      this.autovalidateMode = AutovalidateMode.onUserInteraction,
+      this.textInputAction = TextInputAction.next,
+      this.keyboardType = TextInputType.text,
+      this.autofillHints,
+      this.inputFormatters,
+      this.validator,
+      this.border,
+      this.suffixIcon,
+      this.maxLines,
+      this.initialValue});
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      initialValue: initialValue,
       controller: controller,
       maxLines: obscureText ? 1 : maxLines ?? null,
       onChanged: onChanged,
@@ -162,6 +164,7 @@ class MyaryCard extends StatelessWidget {
             Navigator.push(
               context,
               MyRoute(DiaryDetailPage(
+                diaryId: diaryId,
                 diaryModel: diaryModel,
                 bgColor: color,
                 textColor: darkOrlight(color),

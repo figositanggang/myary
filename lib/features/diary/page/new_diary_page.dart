@@ -6,7 +6,6 @@ import 'package:myary/features/diary/get_controllers/new_diary_controller.dart';
 import 'package:myary/features/user/get_controllers/user_controller.dart';
 import 'package:myary/helpers/firebase_helper.dart';
 import 'package:myary/features/user/models/user_model.dart';
-import 'package:myary/utils/custom_methods.dart';
 import 'package:myary/utils/custom_widgets.dart';
 
 var regex = RegExp(r"[\w-]+");
