@@ -29,3 +29,29 @@ Color darkOrlight(Color color) {
 
   return Colors.white;
 }
+
+Future<void> showMyModalBottomSheet(
+  BuildContext context,
+  List<Widget> children,
+) async {
+  showModalBottomSheet(
+    barrierColor: Colors.transparent,
+    context: context,
+    showDragHandle: true,
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.only(
+        topLeft: Radius.circular(20),
+        topRight: Radius.circular(20),
+      ),
+    ),
+    useSafeArea: true,
+    builder: (context) {
+      return Container(
+        width: MediaQuery.sizeOf(context).width,
+        child: Column(
+          children: children,
+        ),
+      );
+    },
+  );
+}

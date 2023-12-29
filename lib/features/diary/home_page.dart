@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart' as dio;
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:myary/get_controllers/user_controller.dart';
+import 'package:myary/features/user/get_controllers/user_controller.dart';
 import 'package:myary/helpers/firebase_helper.dart';
 import 'package:myary/main.dart';
 import 'package:myary/features/diary/models/diary_model.dart';
@@ -18,7 +18,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   late UserController userController;
-  late UserController userFinder;
+
   late Future<dio.Response> getCurrentUser;
   late Future<dio.Response> getAllDiaries;
 
@@ -29,7 +29,7 @@ class _HomePageState extends State<HomePage> {
     super.initState();
 
     userController = Get.put(UserController());
-    userFinder = Get.find<UserController>();
+
     getCurrentUser = FirebaseHelper.getCurrentUser(_currentUser.id);
     getAllDiaries = FirebaseHelper.getAllDiaries(_currentUser.id);
   }
@@ -47,8 +47,8 @@ class _HomePageState extends State<HomePage> {
             .setCurrentUser(UserModel.fromSnapshot(snapshot.data!.data!));
         return Scaffold(
           appBar: AppBar(
-            title:
-                Text("Halo ${userFinder.currentUser.fullName.split(" ")[0]}"),
+            title: Text(
+                "Halo ${userController.currentUser.fullName.split(" ")[0]}"),
             actions: [
               SizedBox(width: 10),
             ],
@@ -121,7 +121,7 @@ class _HomePageState extends State<HomePage> {
               Navigator.push(
                   context,
                   MyRoute(NewDiaryPage(
-                    currentUser: userFinder.currentUser,
+                    currentUser: userController.currentUser,
                   )));
             },
           ),

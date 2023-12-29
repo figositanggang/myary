@@ -161,7 +161,11 @@ class MyaryCard extends StatelessWidget {
           onTap: () {
             Navigator.push(
               context,
-              MyRoute(DiaryDetailPage(diaryModel: diaryModel)),
+              MyRoute(DiaryDetailPage(
+                diaryModel: diaryModel,
+                bgColor: color,
+                textColor: darkOrlight(color),
+              )),
             );
           },
           borderRadius: BorderRadius.circular(10),
