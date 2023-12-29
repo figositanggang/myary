@@ -23,6 +23,8 @@ class _HomePageState extends State<HomePage> {
   late Future<dio.Response> getCurrentUser;
   late Future<dio.Response> getAllDiaries;
 
+  late ScrollController scrollController;
+
   final _currentUser = supabase.auth.currentUser!;
 
   @override
@@ -30,6 +32,7 @@ class _HomePageState extends State<HomePage> {
     super.initState();
 
     userController = Get.put(UserController());
+    scrollController = ScrollController();
 
     getCurrentUser = FirebaseHelper.getCurrentUser(_currentUser.id);
     getAllDiaries = FirebaseHelper.getAllDiaries(_currentUser.id);
@@ -48,8 +51,19 @@ class _HomePageState extends State<HomePage> {
             .setCurrentUser(UserModel.fromSnapshot(snapshot.data!.data!));
         return Scaffold(
           appBar: AppBar(
-            title: Text(
-                "Halo ${userController.currentUser.fullName.split(" ")[0]}"),
+            title: GestureDetector(
+              onTap: () async {
+                try {
+                  await scrollController.animateTo(
+                    0,
+                    duration: Duration(milliseconds: 250),
+                    curve: Curves.easeInOut,
+                  );
+                } catch (e) {}
+              },
+              child: Text(
+                  "Halo ${userController.currentUser.fullName.split(" ")[0]}"),
+            ),
             actions: [
               InkWell(
                 onTap: () {
@@ -93,17 +107,6 @@ class _HomePageState extends State<HomePage> {
               }
 
               final data = snapshot.data!.data as Map<String, dynamic>;
-
-              // var aw = data.map((key, value) {
-              //   DiaryModel diaryModel = DiaryModel.fromSnapshot(value);
-
-              //   return MapEntry(key, value).value;
-              // });
-
-              // var values = data.values.toList();
-
-              // print(aw);
-
               return RefreshIndicator(
                 onRefresh: () async {
                   await Future.delayed(Duration(milliseconds: 500));
@@ -116,6 +119,7 @@ class _HomePageState extends State<HomePage> {
                   });
                 },
                 child: ListView.builder(
+                  controller: scrollController,
                   padding: EdgeInsets.symmetric(horizontal: 20),
                   itemCount: data.length,
                   itemBuilder: (context, index) {
