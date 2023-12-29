@@ -1,18 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:myary/helpers/supabase_helper.dart';
-import 'package:myary/features/user/auth/signUp_page.dart';
+import 'package:myary/features/auth/signIn_page.dart';
 import 'package:myary/utils/custom_widgets.dart';
 
-class SignInPage extends StatefulWidget {
-  const SignInPage({super.key});
+class SignUpPage extends StatefulWidget {
+  const SignUpPage({super.key});
 
   @override
-  State<SignInPage> createState() => _SignInPageState();
+  State<SignUpPage> createState() => _SignUpPageState();
 }
 
-class _SignInPageState extends State<SignInPage> {
+class _SignUpPageState extends State<SignUpPage> {
   late TextEditingController email;
+  late TextEditingController username;
+  late TextEditingController fullName;
   late TextEditingController password;
   late GlobalKey<FormState> formKey;
 
@@ -23,6 +25,8 @@ class _SignInPageState extends State<SignInPage> {
     super.initState();
 
     email = TextEditingController();
+    username = TextEditingController();
+    fullName = TextEditingController();
     password = TextEditingController();
     formKey = GlobalKey<FormState>();
   }
@@ -39,7 +43,7 @@ class _SignInPageState extends State<SignInPage> {
               key: formKey,
               child: Column(
                 children: [
-                  MyText("Login", fontSize: 30),
+                  MyText("Daftar", fontSize: 30),
                   SizedBox(height: 40),
 
                   // @ Email Field
@@ -51,6 +55,29 @@ class _SignInPageState extends State<SignInPage> {
                     inputFormatters: [
                       FilteringTextInputFormatter.deny(RegExp(r"/^\S*$/"))
                     ],
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
+                  ),
+                  SizedBox(height: 10),
+
+                  // @ usename Field
+                  MyTextField(
+                    controller: username,
+                    hintText: "Username",
+                    autofillHints: [AutofillHints.newUsername],
+                    keyboardType: TextInputType.text,
+                    inputFormatters: [
+                      FilteringTextInputFormatter.deny(RegExp(r"\s\b|\b\s"))
+                    ],
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
+                  ),
+                  SizedBox(height: 10),
+
+                  // @ Full Name Field
+                  MyTextField(
+                    controller: fullName,
+                    hintText: "Nama Lengkap",
+                    autofillHints: [AutofillHints.name],
+                    keyboardType: TextInputType.name,
                     autovalidateMode: AutovalidateMode.onUserInteraction,
                   ),
                   SizedBox(height: 10),
@@ -80,36 +107,39 @@ class _SignInPageState extends State<SignInPage> {
                   ),
                   SizedBox(height: 10),
 
-                  // @ Login Button
+                  // @ Daftar Button
                   SizedBox(
                     width: double.infinity,
                     child: MyButton(
                       onPressed: () {
                         if (formKey.currentState!.validate()) {
-                          SupabaseHelper.signIn(
+                          SupabaseHelper.signUp(
                             context,
                             email: email.text.trim(),
+                            username: username.text.trim(),
+                            fullName: fullName.text.trim(),
                             password: password.text.trim(),
                           );
                         }
                       },
-                      child: Text("Login"),
+                      child: Text("Daftar"),
                     ),
                   ),
                   SizedBox(height: 10),
 
-                  // @ Daftar Button
+                  // @ Batal Button
                   SizedBox(
                     width: double.infinity,
                     child: MyButton(
                       isPrimary: false,
                       onPressed: () {
                         Navigator.pushReplacement(
-                            context, MyRoute(SignUpPage()));
+                            context, MyRoute(SignInPage()));
                       },
-                      child: Text("Daftar"),
+                      child: Text("Batal"),
                     ),
                   ),
+                  SizedBox(height: 10),
                 ],
               ),
             ),

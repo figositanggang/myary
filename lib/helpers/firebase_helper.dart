@@ -1,8 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:myary/features/diary/models/diary_model.dart';
-import 'package:myary/features/diary/home_page.dart';
-import 'package:myary/features/diary/page/diary_detail_page.dart';
+import 'package:myary/features/home_page.dart';
 import 'package:myary/utils/custom_methods.dart';
 import 'package:myary/utils/custom_widgets.dart';
 
@@ -55,6 +54,7 @@ class FirebaseHelper {
         ).toMap(),
       );
 
+      showSnackBar(context, "Berhasil posting diary");
       Navigator.pushAndRemoveUntil(
           context, MyRoute(HomePage()), (route) => false);
     } catch (e) {

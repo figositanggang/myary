@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:myary/helpers/firebase_helper.dart';
 import 'package:myary/main.dart';
 import 'package:myary/features/user/models/user_model.dart';
-import 'package:myary/features/user/auth/auth_state_page.dart';
-import 'package:myary/features/user/auth/signIn_page.dart';
+import 'package:myary/features/auth/auth_state_page.dart';
+import 'package:myary/features/auth/signIn_page.dart';
 import 'package:myary/utils/custom_methods.dart';
 import 'package:myary/utils/custom_widgets.dart';
 import 'package:dio/dio.dart';
@@ -71,6 +71,20 @@ class SupabaseHelper {
       Navigator.pop(context);
 
       print("KESALAHAN: $e");
+    }
+  }
+
+  // ! Sign Out
+  static Future signOut(BuildContext context) async {
+    showLoading(context);
+
+    try {
+      await _auth.signOut();
+
+      Navigator.pushAndRemoveUntil(
+          context, MyRoute(AuthStatePage()), (route) => false);
+    } catch (e) {
+      Navigator.pop(context);
     }
   }
 }

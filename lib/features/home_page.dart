@@ -2,6 +2,7 @@ import 'package:dio/dio.dart' as dio;
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:myary/features/user/get_controllers/user_controller.dart';
+import 'package:myary/features/user/page/user_detail_page.dart';
 import 'package:myary/helpers/firebase_helper.dart';
 import 'package:myary/main.dart';
 import 'package:myary/features/diary/models/diary_model.dart';
@@ -50,6 +51,23 @@ class _HomePageState extends State<HomePage> {
             title: Text(
                 "Halo ${userController.currentUser.fullName.split(" ")[0]}"),
             actions: [
+              InkWell(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MyRoute(UserDetailPage(
+                      userModel: userController.currentUser,
+                      avatarUrl:
+                          "https://res.cloudinary.com/unlinked/image/upload/v1703853324/cute-angry-red-dinosaur-cartoon-vector-icon-illustration-animal-nature-icon-concept-isolated-flat_138676-6013_nxzvjz.jpg",
+                    )),
+                  );
+                },
+                child: CircleAvatar(
+                  backgroundColor: Theme.of(context).colorScheme.background,
+                  backgroundImage: NetworkImage(
+                      "https://res.cloudinary.com/unlinked/image/upload/v1703853324/cute-angry-red-dinosaur-cartoon-vector-icon-illustration-animal-nature-icon-concept-isolated-flat_138676-6013_nxzvjz.jpg"),
+                ),
+              ),
               SizedBox(width: 10),
             ],
           ),
