@@ -1,11 +1,13 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:myary/models/diary_model.dart';
+import 'package:myary/features/diary/models/diary_model.dart';
+import 'package:myary/features/diary/home_page.dart';
 import 'package:myary/utils/custom_methods.dart';
+import 'package:myary/utils/custom_widgets.dart';
 
 class FirebaseHelper {
   static final String databaseUrl =
-      "https://myary-a7438-default-rtdb.asia-southeast1.firebasedatabase.app/";
+      "https://myary-a7438-default-rtdb.asia-southeast1.firebasedatabase.app";
   static final _dio = Dio();
 
   // ! Get Data Current User
@@ -47,13 +49,17 @@ class FirebaseHelper {
         ).toMap(),
       );
 
-      print("DONEEEE");
-
-      Navigator.pop(context);
+      Navigator.pushAndRemoveUntil(
+          context, MyRoute(HomePage()), (route) => false);
     } catch (e) {
       Navigator.pop(context);
 
       showSnackBar(context, "Ada Kesalahan: $e");
     }
+  }
+
+  // ! Get All My Diary
+  static Future<Response> getAllDiaries(String userId) async {
+    return _dio.get("$databaseUrl/diaries.json");
   }
 }

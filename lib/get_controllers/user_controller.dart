@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import 'package:myary/models/user_model.dart';
+import 'package:myary/features/user/models/user_model.dart';
 
 class UserController extends GetxController {
   var _currentUser = UserModel(

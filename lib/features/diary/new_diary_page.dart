@@ -5,7 +5,7 @@ import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:myary/get_controllers/new_diary_controller.dart';
 import 'package:myary/get_controllers/user_controller.dart';
 import 'package:myary/helpers/firebase_helper.dart';
-import 'package:myary/models/user_model.dart';
+import 'package:myary/features/user/models/user_model.dart';
 import 'package:myary/utils/custom_methods.dart';
 import 'package:myary/utils/custom_widgets.dart';
 

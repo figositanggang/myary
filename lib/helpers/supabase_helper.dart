@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:myary/helpers/firebase_helper.dart';
 import 'package:myary/main.dart';
-import 'package:myary/models/user_model.dart';
-import 'package:myary/pages/auth_state_page.dart';
-import 'package:myary/pages/signIn_page.dart';
+import 'package:myary/features/user/models/user_model.dart';
+import 'package:myary/features/user/auth/auth_state_page.dart';
+import 'package:myary/features/user/auth/signIn_page.dart';
 import 'package:myary/utils/custom_methods.dart';
 import 'package:myary/utils/custom_widgets.dart';
 import 'package:dio/dio.dart';

@@ -1,7 +1,13 @@
 // ignore_for_file: must_be_immutable
 
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:myary/features/diary/diary_detail_page.dart';
+import 'package:myary/features/diary/models/diary_model.dart';
+import 'package:myary/utils/custom_methods.dart';
+import 'package:intl/intl.dart';
 
 // Stateless Widgets
 // @ TextFormField
@@ -126,11 +132,91 @@ class MyButton extends StatelessWidget {
 
 // @ Myary Card
 class MyaryCard extends StatelessWidget {
-  const MyaryCard({super.key});
+  final String diaryId;
+  final DiaryModel diaryModel;
+  MyaryCard({super.key, required this.diaryModel, required this.diaryId});
+
+  int r = Random().nextInt(150);
+  int g = Random().nextInt(150);
+  int b = Random().nextInt(150);
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    Color color = Color.fromRGBO(r, g, b, 1);
+    final Color textColor = darkOrlight(Color.fromRGBO(r, g, b, 1));
+
+    final format = DateFormat("EEEE, d/M/y");
+    final date = DateTime.parse(diaryModel.createdAt);
+    final createdAt = format.format(DateTime.parse(diaryModel.createdAt));
+
+    return Container(
+      margin: EdgeInsets.only(bottom: 20),
+      height: MediaQuery.sizeOf(context).height / 3.5,
+      child: Ink(
+        decoration: BoxDecoration(
+          color: color,
+          borderRadius: BorderRadius.circular(10),
+        ),
+        child: InkWell(
+          onTap: () {
+            Navigator.push(
+              context,
+              MyRoute(DiaryDetailPage(diaryModel: diaryModel)),
+            );
+          },
+          borderRadius: BorderRadius.circular(10),
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 15, vertical: 15),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                // @ Title Diary
+                Text(
+                  diaryModel.title,
+                  style: TextStyle(
+                    color: textColor,
+                    fontSize: 30,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                SizedBox(height: 20),
+
+                // @ Isi Diary
+                Expanded(
+                  child: Text(
+                    diaryModel.isiDiary,
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 3,
+                    style: TextStyle(
+                      color: darkOrlight(color),
+                      fontSize: 20,
+                    ),
+                  ),
+                ),
+
+                // @ CreatedAt Diary
+                Align(
+                  alignment: Alignment.bottomRight,
+                  child: Text(
+                    createdAt,
+                    style: TextStyle(color: darkOrlight(color).withOpacity(.5)),
+                  ),
+                ),
+
+                // @ CreatedAt Diary
+                Align(
+                  alignment: Alignment.bottomRight,
+                  child: Text(
+                    "${date.hour}:${date.minute} ${date.timeZoneName}",
+                    style: TextStyle(color: darkOrlight(color).withOpacity(.5)),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
   }
 }
 

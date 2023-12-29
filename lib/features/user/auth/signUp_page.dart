@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:myary/helpers/supabase_helper.dart';
-import 'package:myary/pages/signIn_page.dart';
+import 'package:myary/features/user/auth/signIn_page.dart';
 import 'package:myary/utils/custom_widgets.dart';
 
 class SignUpPage extends StatefulWidget {
